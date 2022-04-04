@@ -1,0 +1,64 @@
+name: Lighthouse
+on:
+  workflow_call:
+    inputs:
+      CYPRESS_BASE_URL:
+        required: true
+        type: string
+      CYPRESS_BASIC_USERNAME:
+        required: true
+        type: string
+      CYPRESS_BASIC_PASSWORD:
+        required: true
+        type: string
+      LHCI_GITHUB_APP_TOKEN:
+        required: true
+        type: string
+      LHCI_TOKEN:
+        required: true
+        type: string
+      LHCI_DASHBOARD_URL:
+        required: true
+        type: string
+      PROJECT_DIR:
+       required: true
+        type: string
+        default: "."
+      NODE_VERSION:
+        required: true
+        type: string
+        default: "lts/gallium"
+      NODE_CACHE_TYPE:
+        required: true
+        type: string
+        default: "yarn"
+      NODE_CACHE_DEP_PATH:
+        required: true
+        type: string
+        default: "yarn.lock"
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Environment Variables
+        run: echo "CYPRESS_BASE_URL=${{ inputs.CYPRESS_BASE_URL }}" >> $GITHUB_ENV
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.NODE_VERSION }}
+          cache: ${{ inputs.NODE_CACHE_TYPE }}
+          cache-dependency-path: ${{ inputs.NODE_CACHE_DEP_PATH }}
+      - name: Tests
+        run: |
+          cd ${{ inputs.PROJECT_DIR }}
+          yarn
+          npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js
+        env:
+          CYPRESS_BASIC_USERNAME: ${{ inputs.CYPRESS_BASIC_USERNAME }}
+          CYPRESS_BASIC_PASSWORD: ${{ inputs.CYPRESS_BASIC_PASSWORD }}
+          LHCI_GITHUB_APP_TOKEN: ${{ inputs.LHCI_GITHUB_APP_TOKEN }}
+          LHCI_TOKEN: ${{ inputs.LHCI_TOKEN }}
+          LHCI_DASHBOARD_URL: ${{ inputs.LHCI_DASHBOARD_URL }}
