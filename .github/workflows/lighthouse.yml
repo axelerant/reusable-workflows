@@ -23,19 +23,15 @@ on:
       PROJECT_DIR:
        required: true
         type: string
-        default: "."
       NODE_VERSION:
         required: true
         type: string
-        default: "lts/gallium"
       NODE_CACHE_TYPE:
         required: true
         type: string
-        default: "yarn"
       NODE_CACHE_DEP_PATH:
         required: true
         type: string
-        default: "yarn.lock"
 
 jobs:
   lighthouse:
