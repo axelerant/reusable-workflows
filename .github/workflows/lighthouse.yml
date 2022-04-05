@@ -5,6 +5,19 @@ on:
       CYPRESS_BASE_URL:
         required: true
         type: string
+      PROJECT_DIR:
+        required: true
+        type: string
+      NODE_VERSION:
+        required: true
+        type: string
+      NODE_CACHE_TYPE:
+        required: true
+        type: string
+      NODE_CACHE_DEP_PATH:
+        required: true
+        type: string
+    secrets:
       CYPRESS_BASIC_USERNAME:
         required: true
         type: string
@@ -18,18 +31,6 @@ on:
         required: true
         type: string
       LHCI_DASHBOARD_URL:
-        required: true
-        type: string
-      PROJECT_DIR:
-        required: true
-        type: string
-      NODE_VERSION:
-        required: true
-        type: string
-      NODE_CACHE_TYPE:
-        required: true
-        type: string
-      NODE_CACHE_DEP_PATH:
         required: true
         type: string
 
@@ -53,8 +54,8 @@ jobs:
           yarn
           npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js
         env:
-          CYPRESS_BASIC_USERNAME: ${{ inputs.CYPRESS_BASIC_USERNAME }}
-          CYPRESS_BASIC_PASSWORD: ${{ inputs.CYPRESS_BASIC_PASSWORD }}
-          LHCI_GITHUB_APP_TOKEN: ${{ inputs.LHCI_GITHUB_APP_TOKEN }}
-          LHCI_TOKEN: ${{ inputs.LHCI_TOKEN }}
-          LHCI_DASHBOARD_URL: ${{ inputs.LHCI_DASHBOARD_URL }}
+          CYPRESS_BASIC_USERNAME: ${{ secrets.CYPRESS_BASIC_USERNAME }}
+          CYPRESS_BASIC_PASSWORD: ${{ secrets.CYPRESS_BASIC_PASSWORD }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
+          LHCI_DASHBOARD_URL: ${{ secrets.LHCI_DASHBOARD_URL }}
