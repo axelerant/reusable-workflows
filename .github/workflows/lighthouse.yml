@@ -20,19 +20,14 @@ on:
     secrets:
       CYPRESS_BASIC_USERNAME:
         required: true
-        type: string
       CYPRESS_BASIC_PASSWORD:
         required: true
-        type: string
       LHCI_GITHUB_APP_TOKEN:
         required: true
-        type: string
       LHCI_TOKEN:
         required: true
-        type: string
       LHCI_DASHBOARD_URL:
         required: true
-        type: string
 
 jobs:
   lighthouse:
