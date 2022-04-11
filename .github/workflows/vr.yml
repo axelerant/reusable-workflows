@@ -2,9 +2,6 @@ name: VR
 on:
   pull_request:
     inputs:
-      INSTANCE_URL:
-        type: string
-        required: true
       NODE_VERSION:
         type: string
         required: true
@@ -21,6 +18,9 @@ on:
       PERCY_TOKEN:
         type: string
         required: true
+      CYPRESS_BASE_URL:
+        type: string
+        required: true
       CYPRESS_BASIC_USERNAME:
         type: string
         required: true
@@ -31,12 +31,7 @@ on:
 jobs:
   vr:
     runs-on: ubuntu-latest
-    needs:
-      - platform_deploy
-    if: ${{ inputs.INSTANCE_URL }} != ''
     steps:
-      - name: Update Environment Variables
-        run: echo "CYPRESS_BASE_URL=${{ inputs.INSTANCE_URL }}" >> $GITHUB_ENV
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Use Node.js
@@ -52,5 +47,6 @@ jobs:
           yarn vr:drupal
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
           CYPRESS_BASIC_USERNAME: ${{ secrets.CYPRESS_BASIC_USERNAME }}
           CYPRESS_BASIC_PASSWORD: ${{ secrets.CYPRESS_BASIC_PASSWORD }}
