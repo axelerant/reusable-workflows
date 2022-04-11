@@ -2,9 +2,6 @@ name: Lighthouse
 on:
   workflow_call:
     inputs:
-      CYPRESS_BASE_URL:
-        required: true
-        type: string
       PROJECT_DIR:
         required: true
         type: string
@@ -18,6 +15,9 @@ on:
         required: true
         type: string
     secrets:
+      CYPRESS_BASE_URL:
+        required: true
+        type: string
       CYPRESS_BASIC_USERNAME:
         required: true
       CYPRESS_BASIC_PASSWORD:
@@ -33,8 +33,6 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - name: Update Environment Variables
-        run: echo "CYPRESS_BASE_URL=${{ inputs.CYPRESS_BASE_URL }}" >> $GITHUB_ENV
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Use Node.js
@@ -49,8 +47,9 @@ jobs:
           yarn
           npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js
         env:
+          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
           CYPRESS_BASIC_USERNAME: ${{ secrets.CYPRESS_BASIC_USERNAME }}
           CYPRESS_BASIC_PASSWORD: ${{ secrets.CYPRESS_BASIC_PASSWORD }}
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
           LHCI_DASHBOARD_URL: ${{ secrets.LHCI_DASHBOARD_URL }}
