@@ -1,6 +1,6 @@
 name: VR
 on:
-  pull_request:
+  workflow_call:
     inputs:
       NODE_VERSION:
         type: string
