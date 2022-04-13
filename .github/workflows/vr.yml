@@ -16,16 +16,12 @@ on:
         required: true
     secrets:
       PERCY_TOKEN:
-        type: string
         required: true
       CYPRESS_BASE_URL:
-        type: string
         required: true
       CYPRESS_BASIC_USERNAME:
-        type: string
         required: true
       CYPRESS_BASIC_PASSWORD:
-        type: string
         required: true
 
 jobs:
