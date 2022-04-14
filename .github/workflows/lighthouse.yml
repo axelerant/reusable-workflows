@@ -15,18 +15,22 @@ on:
         required: true
         type: string
     secrets:
-      CYPRESS_BASE_URL:
+      BASE_URL:
         required: true
-      CYPRESS_BASIC_USERNAME:
-        required: true
-      CYPRESS_BASIC_PASSWORD:
-        required: true
+      BASIC_USERNAME:
+        required: false
+      BASIC_PASSWORD:
+        required: false
       LHCI_GITHUB_APP_TOKEN:
-        required: true
+        required: false
       LHCI_TOKEN:
         required: true
       LHCI_DASHBOARD_URL:
         required: true
+      LHCI_BASIC_USERNAME:
+        required: false
+      LHCI_BASIC_PASSWORD:
+        required: false
 
 jobs:
   lighthouse:
@@ -44,7 +48,7 @@ jobs:
         run: |
           cd ${{ inputs.PROJECT_DIR }}
           yarn
-          npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js
+          npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js --basicAuth.username=$LHCI_BASIC_USERNAME --basicAuth.password=$LHCI_BASIC_PASSWORD
         env:
           CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
           CYPRESS_BASIC_USERNAME: ${{ secrets.CYPRESS_BASIC_USERNAME }}
@@ -52,3 +56,5 @@ jobs:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
           LHCI_DASHBOARD_URL: ${{ secrets.LHCI_DASHBOARD_URL }}
+          LHCI_BASIC_USERNAME: ${{ secrets.LHCI_BASIC_USERNAME }}
+          LHCI_BASIC_PASSWORD: ${{ secrets.LHCI_BASIC_PASSWORD }}
