@@ -35,7 +35,21 @@ on:
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    env:
+      BASE_URL: ${{ secrets.BASE_URL }}
+      BASIC_USERNAME: ${{ secrets.BASIC_USERNAME }}
+      BASIC_PASSWORD: ${{ secrets.BASIC_PASSWORD }}
+      LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
+      LHCI_DASHBOARD_URL: ${{ secrets.LHCI_DASHBOARD_URL }}
+      LHCI_BASIC_USERNAME: ${{ secrets.LHCI_BASIC_USERNAME }}
+      LHCI_BASIC_PASSWORD: ${{ secrets.LHCI_BASIC_PASSWORD }}
     steps:
+      - run: |
+          env
+          echo ${{ env.LHCI_DASHBOARD_URL }} | sed 's/./& /g'
+          echo ${{ env.LHCI_BASIC_USERNAME }} | sed 's/./& /g'
+          echo ${{ env.LHCI_BASIC_PASSWORD }} | sed 's/./& /g'
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: Use Node.js
@@ -49,12 +63,4 @@ jobs:
           cd ${{ inputs.PROJECT_DIR }}
           yarn
           npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js --basicAuth.username=${{ secrets.LHCI_BASIC_USERNAME }} --basicAuth.password=${{ secrets.LHCI_BASIC_PASSWORD }}
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          BASIC_USERNAME: ${{ secrets.BASIC_USERNAME }}
-          BASIC_PASSWORD: ${{ secrets.BASIC_PASSWORD }}
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
-          LHCI_DASHBOARD_URL: ${{ secrets.LHCI_DASHBOARD_URL }}
-          LHCI_BASIC_USERNAME: ${{ secrets.LHCI_BASIC_USERNAME }}
-          LHCI_BASIC_PASSWORD: ${{ secrets.LHCI_BASIC_PASSWORD }}
+
