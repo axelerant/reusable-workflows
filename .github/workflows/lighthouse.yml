@@ -38,10 +38,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Debug
-        run: |
-          env
-          "${{ toJson(env) }}"
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
