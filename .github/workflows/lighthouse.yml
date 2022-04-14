@@ -48,7 +48,7 @@ jobs:
         run: |
           cd ${{ inputs.PROJECT_DIR }}
           yarn
-          npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js --basicAuth.username=$LHCI_BASIC_USERNAME --basicAuth.password=$LHCI_BASIC_PASSWORD
+          npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js --basicAuth.username=${{ secrets.LHCI_BASIC_USERNAME }} --basicAuth.password=${{ secrets.LHCI_BASIC_PASSWORD }}
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           BASIC_USERNAME: ${{ secrets.BASIC_USERNAME }}
