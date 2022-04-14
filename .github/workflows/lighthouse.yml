@@ -50,9 +50,9 @@ jobs:
           yarn
           npx @lhci/cli@0.9.x autorun --config=./lighthouserc.js --basicAuth.username=$LHCI_BASIC_USERNAME --basicAuth.password=$LHCI_BASIC_PASSWORD
         env:
-          CYPRESS_BASE_URL: ${{ secrets.CYPRESS_BASE_URL }}
-          CYPRESS_BASIC_USERNAME: ${{ secrets.CYPRESS_BASIC_USERNAME }}
-          CYPRESS_BASIC_PASSWORD: ${{ secrets.CYPRESS_BASIC_PASSWORD }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          BASIC_USERNAME: ${{ secrets.BASIC_USERNAME }}
+          BASIC_PASSWORD: ${{ secrets.BASIC_PASSWORD }}
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
           LHCI_DASHBOARD_URL: ${{ secrets.LHCI_DASHBOARD_URL }}
