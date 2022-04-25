@@ -39,57 +39,65 @@ lighthouse:
 
 ### PROJECT_DIR
 
-The main directory of the project to serve as root for Lighthouse
+The main directory of the project to serve as root for Lighthouse.
 
 ### NODE_VERSION
 
 The version of node to use.
+
 Example: `lts/gallium`
 
 ### NODE_CACHE_TYPE
 
 The type of cache to use for Node.
+
 Example, `yarn`
 
 ### NODE_CACHE_DEP_PATH
 
-The path to the cache file
+The path to the cache file.
+
 Example of cache file: `yarn.lock`
 
 ## Secrets
 
 ### BASE_URL
 
-The URL of the site that we want to run Lighthouse on
+The URL of the site that we want to run Lighthouse on.
 
 ### BASIC_USERNAME
 
-The username required for the site. Can be blank if no authentication has been setup.
+The username required for the site. 
+
+Can be blank if no authentication has been setup.
 
 ### BASIC_PASSWORD
 
-The password required for the site. Can be blank if no authentication has been setup.
+The password required for the site. 
+
+Can be blank if no authentication has been setup.
 
 ### LHCI_GITHUB_APP_TOKEN
 
-Token generated for using the Lighthouse Github App
-Can be used as LHCI_GITHUB_TOKEN if using the PTA method instead
+Token generated for using the Lighthouse Github App.
+
+Can be used as LHCI_GITHUB_TOKEN if using the PTA method instead.
 
 ### LHCI_TOKEN
 
-Build Token generated when running `lhci wizard`
+Build Token generated when running `lhci wizard`.
 
 ### LHCI_DASHBOARD_URL
 
-The URL of the Lighthouse CI Server
+The URL of the Lighthouse CI Server.
 
 ### LHCI_BASIC_USERNAME
 
-Username as setup in Lighthouse CI authentication
+Username as setup in Lighthouse CI authentication.
 
 ### LHCI_BASIC_PASSWORD
 
-Password as setup in Lighthouse CI authentication
+Password as setup in Lighthouse CI authentication.
 
 ## What this workflow does
 
