@@ -34,39 +34,42 @@ vr:
 ### NODE_VERSION
 
 The version of node to use.
+
 Example: `lts/gallium`
 
 ### NODE_CACHE_TYPE
 
 The type of cache to use for Node.
+
 Example, `yarn`
 
 ### NODE_CACHE_DEP_PATH
 
-The path to the cache file
+The path to the cache file.
+
 Example of cache file: `yarn.lock`
 
 ### PROJECT_DIR
 
-The main directory of the project to serve as root for Lighthouse
+The main directory of the project to serve as root for Lighthouse.
 
 ## Secrets
 
 ### PERCY_TOKEN
 
-The token generated when setting up Percy
+The token generated when setting up Percy.
 
 ### CYPRESS_BASE_URL
 
-The URL you want to run Cypress tests on
+The URL you want to run Cypress tests on.
 
 ### CYPRESS_BASIC_USERNAME
 
-The username used for Cypress
+The username used for Cypress.
 
 ### CYPRESS_BASIC_PASSWORD
 
-The password used for Cypress
+The password used for Cypress.
 
 
 ## What this workflow does
@@ -82,6 +85,6 @@ The password used for Cypress
 
 This workflow runs a task called `vr:drupal` specified in `package.json`.
 
-`vr:dupal` runs `percy exec -- cypress run`
+`vr:dupal` runs `percy exec -- cypress run`.
 
 
